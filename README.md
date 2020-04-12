@@ -1,16 +1,11 @@
-# csc413termprojectfwhite
+# csc413-tankgame
 
-A new Flutter application.
+## Student Name  :
+## Student ID    :
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## src folder is to be used for source code only.
 
-A few resources to get you started if this is your first Flutter project:
+## resources folder is to be used to store the resources for your project only. This includes images, sounds, map text files, etc.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## jar folder is used to store the built jar of your term-project. NO SOURCE CODE SHOULD BE IN THIS FOLDER. DOING SO WILL CAUSE POINTS TO BE DEDUCTED
