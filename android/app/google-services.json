@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "805001360145",
+    "firebase_url": "https://evented-af448.firebaseio.com",
+    "project_id": "evented-af448",
+    "storage_bucket": "evented-af448.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805001360145:android:32b3a5848cad2000f412b0",
+        "android_client_info": {
+          "package_name": "com.example.csc413termprojectfwhite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805001360145-q9l4cobb7u4rmbm3u1st3bo55cd7h2vn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAXTNxbMReWR5h5DwD6dl_o3wrJcVswZk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805001360145-q9l4cobb7u4rmbm3u1st3bo55cd7h2vn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
