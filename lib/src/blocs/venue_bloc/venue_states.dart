@@ -20,7 +20,7 @@ class VenueLoaded extends VenueState {
 
   @override
   String toString() {
-    return 'VenueLoadSuccess { venues: $venues }';
+    return 'VenueLoaded { venues: $venues }';
   }
 }
 

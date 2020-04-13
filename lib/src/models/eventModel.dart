@@ -1,17 +1,33 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:equatable/equatable.dart';
 
-class EventModel{
-  Timestamp _date;
-  String _name;
+class Events extends Equatable {
+  final String name;
+  final Timestamp date;
 
-  EventModel(event){
-    _date = event['date'];
-    _name = event['name'];
+  Events(this.name, this.date);
+
+  Events copyWith({String name, Timestamp date}) {
+    return Events(
+      name ?? this.name,
+      date ?? this.date,
+    );
   }
 
-  //getters
-  String get name => _name;
-  Timestamp get id => _date;
+  @override
+  List<Object> get props => [name, date];
 
+  @override
+  String toString() {
+    return 'Venue{address: $name, date: $date}';
+  }
+
+  static List<Events> fromSnapshot(List<dynamic> events){
+    List<Events> temp = [];
+    for(int i = 0; i < events.length; i++){
+      temp.add(Events(events[i]['name'], events[i]['date']));
+    }
+    return temp;
+  }
 }
+

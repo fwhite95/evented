@@ -2,7 +2,9 @@ import 'package:csc413termprojectfwhite/src/entities/venue_entity.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-//Todo: check of venue model is needed
+import 'eventModel.dart';
+
+
 //May not need a venue model
 //Model is modified in app but venue/events are not modified by user
 
@@ -11,30 +13,32 @@ class Venue extends Equatable{
   final String id;
   final String label;
   final String name;
-  // List<EventModel> _eventsList = [];
+  final List<Events> events;
 
-  Venue(this.address, this.id, this.label, this.name);
+  Venue(this.address, this.id, this.label, this.name, this.events);
 
-  Venue copyWith({String address, String id, String label, String name}){
+  Venue copyWith({String address, String id, String label,
+    String name, List<Events> events}){
     return Venue(
       address ?? this.address,
       id ?? this.id,
       label ?? this.label,
       name ?? this.name,
+      events ?? this.events,
     );
   }
 
   @override
-  List<Object> get props => [address, id, label, name];
+  List<Object> get props => [address, id, label, name, events];
 
   @override
   String toString() {
     return 'Venue{address: $address, id: $id, '
-        'label: $label, name: $name}';
+        'label: $label, name: $name, events: $events}';
   }
 
   VenueEntity toEntity() {
-    return VenueEntity(address, id, label, name);
+    return VenueEntity(address, id, label, name, events);
   }
 
   static Venue fromEntity(VenueEntity entity){
@@ -43,6 +47,7 @@ class Venue extends Equatable{
       entity.id,
       entity.label,
       entity.name,
+      entity.events
     );
   }
 

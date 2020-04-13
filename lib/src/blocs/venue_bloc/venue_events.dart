@@ -8,7 +8,6 @@ abstract class VenueEvent extends Equatable{
   List<Object> get props => [];
 }
 
-//Todo: get venueLoad working
 class LoadVenue extends VenueEvent {}
 
 class VenueAdded extends VenueEvent {

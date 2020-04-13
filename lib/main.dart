@@ -11,12 +11,4 @@ void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
   final UserRepository userRepository = UserRepository();
   runApp(MyApp(userRepository: userRepository));
-//  runApp(
-//    BlocProvider(
-//      create: (context) => AuthenticationBloc(
-//        userRepository: userRepository
-//      )..add(AppStarted()),
-//      child: MyApp(userRepository: userRepository),
-//    ),
-//  );
 }
