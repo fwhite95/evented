@@ -1,3 +1,4 @@
+import 'package:csc413termprojectfwhite/src/blocs/auth_bloc/authentication_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_states.dart';
 import 'package:csc413termprojectfwhite/src/models/eventModel.dart';
@@ -24,7 +25,17 @@ class VenuePage extends StatelessWidget{
         final venues = (state as VenueLoaded).venues;
         return Scaffold(
           appBar: AppBar(
-            title: Text("Venue Search Page"),
+            title: Text("Home Page"),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.exit_to_app),
+                onPressed: () {
+                  BlocProvider.of<AuthenticationBloc>(context).add(
+                    LoggedOut(), //check this works
+                  );
+                },
+              ),
+            ],
           ),
           body: Padding(
             padding: EdgeInsets.all(16),

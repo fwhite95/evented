@@ -4,10 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'eventModel.dart';
 
-
-//May not need a venue model
-//Model is modified in app but venue/events are not modified by user
-
 class Venue extends Equatable{
   final String address;
   final String id;

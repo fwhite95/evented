@@ -1,6 +1,7 @@
 import 'package:csc413termprojectfwhite/src/blocs/login_bloc/validators.dart';
 import 'package:csc413termprojectfwhite/src/blocs/register_bloc/register_event.dart';
 import 'package:csc413termprojectfwhite/src/blocs/register_bloc/register_state.dart';
+import 'package:csc413termprojectfwhite/src/resources/firebase_account_repository.dart';
 import 'package:csc413termprojectfwhite/src/resources/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,9 +9,12 @@ import 'package:rxdart/rxdart.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final UserRepository _userRepository;
+  final FirebaseAccountRepository _accountRepository;
 
-  RegisterBloc({@required UserRepository userRepository})
+  RegisterBloc({@required UserRepository userRepository,
+    @required FirebaseAccountRepository accountRepository})
   :assert(userRepository != null),
+  _accountRepository = accountRepository,
   _userRepository = userRepository;
 
   @override
@@ -71,8 +75,17 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           email: email,
           password: password,
       );
+      try {
+        await _accountRepository.addAccount(
+            email, await _userRepository.getUser());
+      }catch(e){
+        print("Error: $e");
+        print("registerBloc");
+      }
       yield RegisterState.success();
+
     }catch(_){
+
       yield RegisterState.failure();
     }
   }

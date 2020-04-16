@@ -54,7 +54,6 @@ class Submitted extends LoginEvent {
   }
 }
 
-class LoginWithGooglePressed extends LoginEvent{}
 
 class LoginWithCredentialsPressed extends LoginEvent{
   final String email;
