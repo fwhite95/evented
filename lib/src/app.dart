@@ -1,10 +1,14 @@
 import 'package:csc413termprojectfwhite/src/blocs/account_bloc/account_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/account_bloc/account_event.dart';
 import 'package:csc413termprojectfwhite/src/blocs/auth_bloc/authentication_bloc.dart';
+import 'package:csc413termprojectfwhite/src/blocs/navigation_bloc/navigation_bloc.dart';
+import 'package:csc413termprojectfwhite/src/blocs/navigation_bloc/navigation_event.dart';
 import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_events.dart';
+import 'package:csc413termprojectfwhite/src/pages/homePage.dart';
 import 'package:csc413termprojectfwhite/src/pages/login/loginPage.dart';
 import 'package:csc413termprojectfwhite/src/pages/login/splash_screen.dart';
+import 'package:csc413termprojectfwhite/src/pages/settingsPage.dart';
 import 'package:csc413termprojectfwhite/src/pages/venuePage.dart';
 import 'package:csc413termprojectfwhite/src/resources/firebase_account_repository.dart';
 import 'package:csc413termprojectfwhite/src/resources/firebase_venues_repository.dart';
@@ -48,6 +52,11 @@ class MyApp extends StatelessWidget {
             );
           },
         ),
+        BlocProvider<NavigationBloc>(
+          create: (context) {
+            return NavigationBloc();
+          },
+        ),
       ],
       child: MaterialApp(
         home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
@@ -62,11 +71,13 @@ class MyApp extends StatelessWidget {
               );
             }
             if (state is Authenticated) {
-              return VenuePage(name: state.displayName);
+              return HomePage(name: state.displayName);
             }
             return Container(
-              child: Center(
-                child: Text("HELP"),
+              child: Scaffold(
+                body: Center(
+                  child: Text("HELP"),
+                ),
               ),
             );
           },

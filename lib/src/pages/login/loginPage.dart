@@ -13,6 +13,7 @@ class LoginScreen extends StatelessWidget {
   final UserRepository _userRepository;
   final FirebaseAccountRepository _accountRepository;
 
+
   LoginScreen({Key key, @required UserRepository userRepository,
   @required FirebaseAccountRepository accountRepository})
   : assert(userRepository != null),

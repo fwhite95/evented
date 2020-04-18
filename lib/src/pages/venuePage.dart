@@ -3,6 +3,7 @@ import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_states.dart';
 import 'package:csc413termprojectfwhite/src/models/eventModel.dart';
 import 'package:csc413termprojectfwhite/src/models/venueModel.dart';
+import 'package:csc413termprojectfwhite/src/ui/appBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,8 +25,9 @@ class VenuePage extends StatelessWidget{
         }
         final venues = (state as VenueLoaded).venues;
         return Scaffold(
+          bottomNavigationBar: MainNavBar(),
           appBar: AppBar(
-            title: Text("Home Page"),
+            title: Text("Venue Search Page"),
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.exit_to_app),
