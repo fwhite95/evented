@@ -7,7 +7,7 @@ import 'package:csc413termprojectfwhite/src/ui/appBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class VenuePage extends StatelessWidget{
+class VenuePage extends StatelessWidget {
   final String name;
 
   VenuePage({Key key, @required this.name}) : super(key: key);
@@ -16,7 +16,7 @@ class VenuePage extends StatelessWidget{
   Widget build(BuildContext context) {
     return BlocBuilder<VenueBloc, VenueState>(
       builder: (context, state) {
-        if(state is VenueLoading){
+        if (state is VenueLoading) {
           return Scaffold(
             body: Center(
               child: CircularProgressIndicator(),
@@ -41,16 +41,8 @@ class VenuePage extends StatelessWidget{
           ),
           body: Padding(
             padding: EdgeInsets.all(16),
-            child: ListView.builder(
-              //TODO: Work on ui for the venue Tiles
-              itemCount: venues.length,
-              itemBuilder: (context, index) {
-                return VenueExpansionTile(
-                  name: venues[index].name,
-                  label: venues[index].label,
-                  events: venues[index].events,
-                );
-              },
+            child: VenueTypeTiles(
+              venues: venues,
             ),
           ),
         );
@@ -59,47 +51,101 @@ class VenuePage extends StatelessWidget{
   }
 }
 
-class VenueExpansionTile extends StatelessWidget {
-  final String name;
-  final String label;
-  final List<Events> events;
+class VenueTypeTiles extends StatelessWidget {
+  final List<Venue> venues;
 
-  VenueExpansionTile({this.name, this.label, this.events});
+  VenueTypeTiles({this.venues});
 
   @override
   Widget build(BuildContext context) {
-    return ExpansionTile(
-      title: Text("$name"),
-      subtitle: Text("Label: $label"),
+    List<Venue> clubList = [];
+    List<Venue> barList = [];
+    List<Venue> concertList = [];
+
+    //add items if more labels in future
+    //or change method but good for now
+    //Map maybe in future for more options
+    for (Venue v in venues) {
+      if (v.label == 'club') {
+        clubList.add(v);
+      } else if (v.label == 'bar') {
+        barList.add(v);
+      } else if (v.label == 'concert hall') {
+        concertList.add(v);
+      }
+    }
+    return ListView(
       children: <Widget>[
-        Card(
-          child: ListView.builder(
-            scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: events.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(events[index].name),
-                  subtitle: Text(events[index].date.toDate().toString()),
-                );
-              }
-          ),
+        ExpansionTile(
+          title: Text("Club"),
+          children: <Widget>[
+            Card(
+              child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: clubList.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: ListTile(
+                        title: Text(clubList[index].name),
+                        subtitle: Text(
+                            'Label: ${clubList[index].label} \nAddress: ${clubList[index].address}'),
+                        trailing: IconButton(
+                          icon: Icon(Icons.add),
+                        ),
+                      ),
+                    );
+                  }),
+            ),
+          ],
+        ),
+        ExpansionTile(
+          title: Text("Concert Hall"),
+          children: <Widget>[
+            Card(
+              child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: concertList.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: ListTile(
+                        title: Text(clubList[index].name),
+                        subtitle: Text(
+                            'Label: ${clubList[index].label} \nAddress: ${clubList[index].address}'),
+                        trailing: IconButton(
+                          icon: Icon(Icons.add),
+                        ),
+                      ),
+                    );
+                  }),
+            ),
+          ],
+        ),
+        ExpansionTile(
+          title: Text("Bar"),
+          children: <Widget>[
+            Card(
+              child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: barList.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: ListTile(
+                        title: Text(clubList[index].name),
+                        subtitle: Text(
+                            'Label: ${clubList[index].label} \nAddress: ${clubList[index].address}'),
+                        trailing: IconButton(
+                          icon: Icon(Icons.add),
+                        ),
+                      ),
+                    );
+                  }),
+            ),
+          ],
         ),
       ],
     );
   }
-
-}
-
-class VenueSearchTile extends StatelessWidget {
-  final String name;
-  final String label;
-
-  VenueSearchTile({this.name, this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile();
-  }
-
 }

@@ -5,7 +5,7 @@
 import 'package:csc413termprojectfwhite/src/blocs/auth_bloc/authentication_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/navigation_bloc/navigation_state.dart';
 import 'package:csc413termprojectfwhite/src/blocs/navigation_bloc/navigation_bloc.dart';
-import 'package:csc413termprojectfwhite/src/pages/searchPage.dart';
+import 'package:csc413termprojectfwhite/src/pages/search/searchPage.dart';
 import 'package:csc413termprojectfwhite/src/pages/settingsPage.dart';
 import 'package:csc413termprojectfwhite/src/pages/venuePage.dart';
 import 'package:csc413termprojectfwhite/src/pages/venuesFollowedPage.dart';
