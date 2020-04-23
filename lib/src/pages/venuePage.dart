@@ -1,7 +1,9 @@
+import 'package:csc413termprojectfwhite/src/blocs/account_bloc/account_bloc.dart';
+import 'package:csc413termprojectfwhite/src/blocs/account_bloc/account_event.dart';
 import 'package:csc413termprojectfwhite/src/blocs/auth_bloc/authentication_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_states.dart';
-import 'package:csc413termprojectfwhite/src/models/eventModel.dart';
+import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
 import 'package:csc413termprojectfwhite/src/models/venueModel.dart';
 import 'package:csc413termprojectfwhite/src/ui/appBar.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VenuePage extends StatelessWidget {
   final String name;
+
 
   VenuePage({Key key, @required this.name}) : super(key: key);
 
@@ -53,8 +56,9 @@ class VenuePage extends StatelessWidget {
 
 class VenueTypeTiles extends StatelessWidget {
   final List<Venue> venues;
+  final AccountBloc accountBloc;
 
-  VenueTypeTiles({this.venues});
+  VenueTypeTiles({this.venues, this.accountBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +96,9 @@ class VenueTypeTiles extends StatelessWidget {
                             'Label: ${clubList[index].label} \nAddress: ${clubList[index].address}'),
                         trailing: IconButton(
                           icon: Icon(Icons.add),
+                          onPressed: () {
+
+                          },
                         ),
                       ),
                     );
@@ -110,9 +117,9 @@ class VenueTypeTiles extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Card(
                       child: ListTile(
-                        title: Text(clubList[index].name),
+                        title: Text(concertList[index].name),
                         subtitle: Text(
-                            'Label: ${clubList[index].label} \nAddress: ${clubList[index].address}'),
+                            'Label: ${concertList[index].label} \nAddress: ${clubList[index].address}'),
                         trailing: IconButton(
                           icon: Icon(Icons.add),
                         ),
@@ -133,9 +140,10 @@ class VenueTypeTiles extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Card(
                       child: ListTile(
-                        title: Text(clubList[index].name),
+                        title: Text(barList[index].name),
                         subtitle: Text(
-                            'Label: ${clubList[index].label} \nAddress: ${clubList[index].address}'),
+                            'Label: ${barList[index].label} '
+                                '\nAddress: ${barList[index].address}'),
                         trailing: IconButton(
                           icon: Icon(Icons.add),
                         ),
@@ -147,5 +155,9 @@ class VenueTypeTiles extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  void _onUpdateSubmitted(Account account) {
+    accountBloc.add(AccountUpdated(account));
   }
 }

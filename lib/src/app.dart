@@ -1,30 +1,25 @@
 import 'package:csc413termprojectfwhite/src/blocs/account_bloc/account_bloc.dart';
-import 'package:csc413termprojectfwhite/src/blocs/account_bloc/account_event.dart';
 import 'package:csc413termprojectfwhite/src/blocs/auth_bloc/authentication_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/navigation_bloc/navigation_bloc.dart';
-import 'package:csc413termprojectfwhite/src/blocs/navigation_bloc/navigation_event.dart';
 import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_events.dart';
 import 'package:csc413termprojectfwhite/src/pages/homePage.dart';
 import 'package:csc413termprojectfwhite/src/pages/login/loginPage.dart';
 import 'package:csc413termprojectfwhite/src/pages/login/splash_screen.dart';
-import 'package:csc413termprojectfwhite/src/pages/settingsPage.dart';
-import 'package:csc413termprojectfwhite/src/pages/venuePage.dart';
-import 'package:csc413termprojectfwhite/src/resources/firebase_account_repository.dart';
-import 'package:csc413termprojectfwhite/src/resources/firebase_venues_repository.dart';
+import 'package:csc413termprojectfwhite/src/resources/firebase_repository.dart';
 import 'package:csc413termprojectfwhite/src/resources/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyApp extends StatelessWidget {
   final UserRepository _userRepository;
-  final FirebaseAccountRepository _accountRepository;
+  final FirebaseRepository _firebaseRepository;
 
   MyApp({Key key, @required UserRepository userRepository,
-  @required FirebaseAccountRepository accountRepository})
+  @required FirebaseRepository firebaseRepository})
       : assert(userRepository != null),
         _userRepository = userRepository,
-        _accountRepository = accountRepository,
+        _firebaseRepository = firebaseRepository,
         super(key: key);
 
   @override
@@ -41,14 +36,14 @@ class MyApp extends StatelessWidget {
         BlocProvider<VenueBloc>(
           create: (context) {
             return VenueBloc(
-              venuesRepository: FirebaseVenuesRepository(),
+              venuesRepository: FirebaseRepository(),
             )..add(LoadVenue());
           },
         ),
         BlocProvider<AccountBloc>(
           create: (context) {
             return AccountBloc(
-              accountRepository: FirebaseAccountRepository(),
+              accountRepository: FirebaseRepository(),
             );
           },
         ),
@@ -67,11 +62,11 @@ class MyApp extends StatelessWidget {
             if (state is Unauthenticated) {
               return LoginScreen(
                 userRepository: _userRepository,
-                accountRepository: _accountRepository,
+                firebaseRepository: _firebaseRepository,
               );
             }
             if (state is Authenticated) {
-              return HomePage(name: state.displayName);
+              return HomePage(name: state.displayName, firebaseRepository: _firebaseRepository,);
             }
             return Container(
               child: Scaffold(

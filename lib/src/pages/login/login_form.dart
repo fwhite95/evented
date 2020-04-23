@@ -2,7 +2,7 @@ import 'package:csc413termprojectfwhite/src/blocs/auth_bloc/authentication_bloc.
 import 'package:csc413termprojectfwhite/src/blocs/login_bloc/login_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/login_bloc/login_event.dart';
 import 'package:csc413termprojectfwhite/src/blocs/login_bloc/login_state.dart';
-import 'package:csc413termprojectfwhite/src/resources/firebase_account_repository.dart';
+import 'package:csc413termprojectfwhite/src/resources/firebase_repository.dart';
 import 'package:csc413termprojectfwhite/src/resources/user_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,13 +13,13 @@ import 'login_button.dart';
 
 class LoginForm extends StatefulWidget{
   final UserRepository _userRepository;
-  final FirebaseAccountRepository _accountRepository;
+  final FirebaseRepository _firebaseRepository;
 
   LoginForm({Key key, @required UserRepository userRepository,
-  @required FirebaseAccountRepository accountRepository})
+  @required FirebaseRepository firebaseRepository})
   : assert(userRepository != null),
   _userRepository = userRepository,
-  _accountRepository = accountRepository,
+  _firebaseRepository = firebaseRepository,
   super(key: key);
 
   State<LoginForm> createState() => _LoginFormState();
@@ -33,7 +33,7 @@ class _LoginFormState extends State<LoginForm> {
 
 
   UserRepository get _userRepository => widget._userRepository;
-  FirebaseAccountRepository get _accountRepository => widget._accountRepository;
+  FirebaseRepository get _firebaseRepository => widget._firebaseRepository;
   bool get isPopulated =>
       _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
 
@@ -136,7 +136,7 @@ class _LoginFormState extends State<LoginForm> {
                         ),
                         CreateAccountButton(
                           userRepository: _userRepository,
-                          accountRepository: _accountRepository,
+                          firebaseRepository: _firebaseRepository,
                         ),
                       ],
                     ),

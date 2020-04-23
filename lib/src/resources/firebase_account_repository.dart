@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
 import 'dart:async';
-
 
 class FirebaseAccountRepository {
   final accountCollection = Firestore.instance.collection('users');
@@ -10,6 +10,8 @@ class FirebaseAccountRepository {
         .setData({
       'userId' : userId,
       'email' : email,
+      'venueFollowed': List<String>(),
+      'eventsFollowed': List<String>(),
     });
   }
 
@@ -17,6 +19,9 @@ class FirebaseAccountRepository {
     return accountCollection.document(userId);
   }
 
-  //TODO: Write update account
+  Future<void> updateAccount(Account update){
+    return accountCollection.document(update.userId)
+        .updateData(update.toEntity().toDocument());
+  }
 
 }

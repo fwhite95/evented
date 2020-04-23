@@ -2,16 +2,16 @@ import 'dart:async';
 
 import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_events.dart';
 import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_states.dart';
-import 'package:csc413termprojectfwhite/src/models/venueModel.dart';
+import 'package:csc413termprojectfwhite/src/resources/firebase_repository.dart';
 import 'package:csc413termprojectfwhite/src/resources/firebase_venues_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VenueBloc extends Bloc<VenueEvent, VenueState> {
-  final FirebaseVenuesRepository _venuesRepository;
+  final FirebaseRepository _venuesRepository;
   StreamSubscription _venuesSubscription;
 
-  VenueBloc({@required FirebaseVenuesRepository venuesRepository})
+  VenueBloc({@required FirebaseRepository venuesRepository})
   : assert (venuesRepository != null),
   _venuesRepository = venuesRepository;
 

@@ -73,24 +73,4 @@ class AccountDeleted extends AccountEvent {
   }
 }
 
-//may need to pass a single string to update list in DB
-//instead of entire list
-class AccountVenuesFollowedUpdated extends AccountEvent{
-  final List<Venue> venues;
 
-  const AccountVenuesFollowedUpdated(this.venues);
-
-  @override
-  List<Object> get props => [venues];
-}
-
-//may need to pass a single string to update list in DB
-//instead of entire list
-class AccountEventsFollowedUpdated extends AccountEvent{
-  final List<Events> events;
-
-  const AccountEventsFollowedUpdated(this.events);
-
-  @override
-  List<Object> get props => [events];
-}

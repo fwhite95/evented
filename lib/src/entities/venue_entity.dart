@@ -42,6 +42,17 @@ class VenueEntity extends Equatable {
     );
   }
 
+  //Entity to sort venue followed data
+  static VenueEntity fromSnapshotVenue(DocumentSnapshot snapshot){
+    return VenueEntity(
+      snapshot.data['address'],
+      snapshot.data['id'],
+      snapshot.data['label'],
+      snapshot.data['name'],
+      Events.fromSnapshot(snapshot.data['events']),
+    );
+  }
+
   static VenueEntity fromSnapshot(DocumentSnapshot snapshot){
     return VenueEntity(
       snapshot.data['address'],

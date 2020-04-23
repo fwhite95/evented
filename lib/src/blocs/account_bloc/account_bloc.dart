@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:csc413termprojectfwhite/src/resources/firebase_repository.dart';
 import 'package:csc413termprojectfwhite/src/resources/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:csc413termprojectfwhite/src/blocs/account_bloc/account_event.dart';
@@ -7,10 +8,9 @@ import 'package:csc413termprojectfwhite/src/resources/firebase_account_repositor
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
-  final FirebaseAccountRepository _accountRepository;
-  //StreamSubscription _accountSubscription;
+  final FirebaseRepository _accountRepository;
 
-  AccountBloc({@required FirebaseAccountRepository accountRepository,})
+  AccountBloc({@required FirebaseRepository accountRepository,})
       : assert (accountRepository != null),
         _accountRepository = accountRepository;
 
@@ -22,7 +22,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     if(event is LoadAccount){
       //yield* _mapLoadAccountToState(event);
     } else if(event is AccountUpdated) {
-      //yield* _mapAccountUpdateToState(event);
+      yield* _mapAccountUpdateToState(event);
     }else if(event is AccountLoadVenuesFollowed) {
       //yield* _mapAccountLoadVenuesToState(event);
     }

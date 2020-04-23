@@ -1,18 +1,11 @@
-import 'package:csc413termprojectfwhite/src/blocs/account_bloc/account_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/auth_bloc/authentication_bloc.dart';
-import 'package:csc413termprojectfwhite/src/blocs/login_bloc/login_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/register_bloc/register_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/register_bloc/register_state.dart';
 import 'package:csc413termprojectfwhite/src/blocs/register_bloc/register_event.dart';
-import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
 import 'package:csc413termprojectfwhite/src/pages/register/register_button.dart';
-import 'package:csc413termprojectfwhite/src/resources/firebase_account_repository.dart';
-import 'package:csc413termprojectfwhite/src/resources/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:csc413termprojectfwhite/src/blocs/account_bloc/account_event.dart';
-import 'package:csc413termprojectfwhite/src/blocs/account_bloc/account_state.dart';
-import 'dart:async';
+
 
 class RegisterForm extends StatefulWidget{
   State<RegisterForm> createState() => _RegistorFormState();
@@ -76,11 +69,6 @@ class _RegistorFormState extends State<RegisterForm> {
         }
         if(state.isSuccess) {
           BlocProvider.of<AuthenticationBloc>(context).add(LoggedIn());
-           //Needs the userId from auth account
-          //Might Work but breaks encapsulation by calling user Repository directly
-          //have to get userid from a bloc not userRepository
-          //exists in authenticationBloc/ Authenticated State
-
           Navigator.of(context).pop();
 
         }
