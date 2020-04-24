@@ -1,7 +1,4 @@
 import 'package:csc413termprojectfwhite/src/blocs/navigation_bloc/navigation_state.dart';
-import 'package:csc413termprojectfwhite/src/pages/homePage.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'navigation_event.dart';

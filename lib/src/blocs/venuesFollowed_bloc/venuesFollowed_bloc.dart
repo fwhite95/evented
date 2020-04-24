@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:csc413termprojectfwhite/src/blocs/venuesFollowed_bloc/venuesFollowed_events.dart';
 import 'package:csc413termprojectfwhite/src/blocs/venuesFollowed_bloc/venuesFollowed_states.dart';
 import 'package:csc413termprojectfwhite/src/resources/firebase_repository.dart';
@@ -19,15 +18,18 @@ class VenueFollowedBloc extends Bloc<VenueFollowedEvent, VenueFollowedState> {
 
   @override
   Stream<VenueFollowedState> mapEventToState(VenueFollowedEvent event) async*{
-    if(event is VenuesFollowedLoadSuccessEvent){
-      yield* _mapLoadVenueFollowedToState(event);
-    } else if(event is VenuesUnFollowedEvent) {
-      //yield* _mapLoggedOutToState();
+    if(event is VenuesFollowedLoadEvent){
+      try{
+        yield* _mapLoadVenueFollowedToState(event);
+      }catch(_){
+        print('Error: VenueFollowedBloc');
+        yield VenueFollowedLoadFailure();
+      }
     }
   }
 
-  Stream<VenueFollowedState> _mapLoadVenueFollowedToState(VenuesFollowedLoadSuccessEvent event) async* {
-    yield VenueFollowedLoaded(await _firebaseRepository.venuesFollowed(event.venuesFollowed));
+  Stream<VenueFollowedState> _mapLoadVenueFollowedToState(VenuesFollowedLoadEvent event) async* {
+    yield VenueFollowedLoaded(await _firebaseRepository.venuesFollowedFromAccount(event.account));
   }
 
 

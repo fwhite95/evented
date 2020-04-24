@@ -34,17 +34,18 @@ class AccountEntity extends Equatable {
     return AccountEntity(
       json['userId'] as String,
       json['email'] as String,
-      json['eventsFollowed'] as List<dynamic>,
-      json['venuesFollwoed'] as List<dynamic>,
+      json['eventsFollowed'] as List<String>,
+      json['venuesFollowed'] as List<String>,
     );
   }
+
 
   static AccountEntity fromSnapshot(DocumentSnapshot snapshot){
     return AccountEntity(
       snapshot.data['userId'],
       snapshot.data['email'],
       snapshot.data['eventsFollowed'],
-      snapshot.data['venuesFollwoed'],
+      snapshot.data['venuesFollowed'],
     );
   }
 

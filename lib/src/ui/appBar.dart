@@ -1,9 +1,18 @@
 import 'package:csc413termprojectfwhite/src/blocs/navigation_bloc/navigation_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/navigation_bloc/navigation_event.dart';
+import 'package:csc413termprojectfwhite/src/blocs/venuesFollowed_bloc/venuesFollowed_bloc.dart';
+import 'package:csc413termprojectfwhite/src/blocs/venuesFollowed_bloc/venuesFollowed_events.dart';
+import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainNavBar extends StatelessWidget {
+  final Account _account;
+
+  MainNavBar({Key key, Account account})
+  : _account = account,
+  super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -42,7 +51,8 @@ class MainNavBar extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.settings),
             onPressed: () {
-              BlocProvider.of<NavigationBloc>(context).add(NavigateToSettingsPageEvent());
+              BlocProvider.of<NavigationBloc>(context)
+                  .add(NavigateToSettingsPageEvent());
             },
           ),
         ],

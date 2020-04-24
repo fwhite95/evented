@@ -23,12 +23,12 @@ class VenueEntity extends Equatable {
   }
 
   @override
-  List<Object> get props => [address, id, label, name];
+  List<Object> get props => [address, id, label, name, events];
 
   @override
   String toString() {
     return 'VenueEntity{address: $address, id: $id, '
-        'label: $label, name: $name}';
+        'label: $label, name: $name, events: $events}';
   }
 
   static VenueEntity fromJson(Map<String, Object> json){

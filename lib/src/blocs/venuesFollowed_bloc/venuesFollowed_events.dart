@@ -1,5 +1,6 @@
-import 'package:csc413termprojectfwhite/src/models/venueModel.dart';
+import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
 import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 
 abstract class VenueFollowedEvent extends Equatable{
   const VenueFollowedEvent();
@@ -8,14 +9,15 @@ abstract class VenueFollowedEvent extends Equatable{
   List<Object> get props => [];
 }
 
-class VenuesFollowedLoadSuccessEvent extends VenueFollowedEvent {
-  final List<String> venuesFollowed;
+class VenuesFollowedLoadEvent extends VenueFollowedEvent {
+  final Account account;
 
-  const VenuesFollowedLoadSuccessEvent({this.venuesFollowed});
+  const VenuesFollowedLoadEvent({@required this.account});
 
   @override
-  List<Object> get props => [venuesFollowed];
+  List<Object> get props => [account];
 }
+
 
 //class VenuesFollowedUpdatedEvent extends VenueFollowedEvent{
 //  final List<String> venuesFollowed;

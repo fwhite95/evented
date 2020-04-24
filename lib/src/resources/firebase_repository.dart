@@ -15,7 +15,23 @@ class FirebaseRepository {
   //2. Uses the list to get Venues from venue collection
   //3. Returns a list of followed venues
 
+  Future<List<Venue>> venuesFollowedFromAccount(Account account) async {
+    print('VenuesFollowed Function');
+    final List<Venue> venuesFollowedList = [];
+    print('1');
+    print(account.toString());
+    final List<String> venuesFollowedStrings = account.venuesFollowed;
+    print('2');
+    print(venuesFollowedStrings);
+    for(String id in venuesFollowedStrings){
+      venuesFollowedList.add(await getVenuesFollowed(id));
+  }
+    print('3');
+    return venuesFollowedList;
+  }
+
   Future<List<Venue>> venuesFollowed(List<String> venueFollowed) async{
+    print('VenuesFollowed? ');
     List<Venue> venuesFollowedList = [];
     for(String id in venueFollowed){
       venuesFollowedList.add(await getVenuesFollowed(id));
@@ -33,13 +49,16 @@ class FirebaseRepository {
         .setData({
       'userId' : userId,
       'email' : email,
-      'venueFollowed': List<String>(),
+      'venuesFollowed': List<String>(),
       'eventsFollowed': List<String>(),
     });
   }
 
   Future<Account> getAccount(String userId) async{
-    return Account.fromEntity(AccountEntity.fromSnapshot(await accountCollection.document(userId).snapshots().single));
+    var snap = await accountCollection.document(userId).get();
+    final Account account = Account.fromEntity(AccountEntity.fromSnapshot(snap));
+    return account;
+
   }
 
   Future<void> updateAccount(Account update){

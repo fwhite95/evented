@@ -18,7 +18,7 @@ class VenuesFollowedPage extends StatefulWidget{
 }
 
 class _VenuesFollowedPageState extends State<VenuesFollowedPage> {
-  VenueFollowedBloc _venueFollowedBloc;
+
 
   FirebaseRepository get _firebaseRepository => widget._firebaseRepository;
   String get name => widget.name;
@@ -26,7 +26,7 @@ class _VenuesFollowedPageState extends State<VenuesFollowedPage> {
   @override
   void initState() {
     super.initState();
-    _venueFollowedBloc = BlocProvider.of<VenueFollowedBloc>(context);
+    //_venueFollowedBloc = BlocProvider.of<VenueFollowedBloc>(context);
   }
 
   @override
@@ -34,6 +34,14 @@ class _VenuesFollowedPageState extends State<VenuesFollowedPage> {
     return BlocBuilder<VenueFollowedBloc, VenueFollowedState>(
     builder: (context, state){
       if(state is VenueFollowedLoading){
+        return Scaffold(
+          bottomNavigationBar: MainNavBar(),
+          body: Center(
+            child: Text(state.toString()),
+          ),
+        );
+      }
+      if(state is VenueFollowedLoadFailure){
         return Scaffold(
           bottomNavigationBar: MainNavBar(),
           body: Center(

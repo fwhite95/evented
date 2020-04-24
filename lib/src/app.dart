@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
           create: (context) {
             return AuthenticationBloc(
               userRepository: UserRepository(),
+              firebaseRepository: FirebaseRepository()
             )..add(AppStarted());
           },
         ),
@@ -66,7 +67,7 @@ class MyApp extends StatelessWidget {
               );
             }
             if (state is Authenticated) {
-              return HomePage(name: state.displayName, firebaseRepository: _firebaseRepository,);
+              return HomePage(name: state.displayName, firebaseRepository: _firebaseRepository, account: state.account,);
             }
             return Container(
               child: Scaffold(

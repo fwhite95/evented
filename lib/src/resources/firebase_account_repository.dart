@@ -10,7 +10,7 @@ class FirebaseAccountRepository {
         .setData({
       'userId' : userId,
       'email' : email,
-      'venueFollowed': List<String>(),
+      'venuesFollowed': List<String>(),
       'eventsFollowed': List<String>(),
     });
   }

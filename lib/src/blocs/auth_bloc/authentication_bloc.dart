@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
+import 'package:csc413termprojectfwhite/src/resources/firebase_repository.dart';
 import 'package:csc413termprojectfwhite/src/resources/user_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
@@ -11,9 +13,11 @@ class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
 
   final UserRepository _userRepository;
+  final FirebaseRepository _firebaseRepository;
 
-  AuthenticationBloc({@required UserRepository userRepository})
+  AuthenticationBloc({@required UserRepository userRepository, @required FirebaseRepository firebaseRepository})
   : assert(userRepository != null),
+  _firebaseRepository = firebaseRepository,
   _userRepository = userRepository;
 
   @override
@@ -35,7 +39,8 @@ class AuthenticationBloc
       final isSignedIn = await _userRepository.isSignedIn();
       if(isSignedIn){
         final name = await _userRepository.getUser();
-        yield Authenticated(name);
+        final Account account = await _firebaseRepository.getAccount(name);
+        yield Authenticated(name, account);
       }else{
         yield Unauthenticated();
       }
@@ -45,7 +50,9 @@ class AuthenticationBloc
   }
 
   Stream<AuthenticationState> _mapLoggedInToState() async*{
-    yield Authenticated(await _userRepository.getUser());
+    final name = await _userRepository.getUser();
+    final Account account = await _firebaseRepository.getAccount(name);
+    yield Authenticated(name, account);
   }
 
   Stream<AuthenticationState> _mapLoggedOutToState() async*{

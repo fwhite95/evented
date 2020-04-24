@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
-import 'package:csc413termprojectfwhite/src/models/venueModel.dart';
-import 'package:csc413termprojectfwhite/src/models/eventModel.dart';
+
 
 abstract class AccountEvent extends Equatable{
   const AccountEvent();

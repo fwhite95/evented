@@ -1,7 +1,7 @@
 import 'package:csc413termprojectfwhite/src/entities/account_entity.dart';
 import 'package:equatable/equatable.dart';
 
-class Account extends Equatable{
+class Account extends Equatable {
   final String userId;
   final String email;
   final List<String> venuesFollowed;
@@ -9,8 +9,11 @@ class Account extends Equatable{
 
   Account(this.userId, this.email, this.eventsFollowed, this.venuesFollowed);
 
-  Account copyWith({String userId, String email,
-    List<String> eventsFollowed, List<String> venuesFollowed}){
+  Account copyWith(
+      {String userId,
+      String email,
+      List<String> eventsFollowed,
+      List<String> venuesFollowed}) {
     return Account(
       userId ?? this.userId,
       email ?? this.email,
@@ -24,7 +27,7 @@ class Account extends Equatable{
 
   @override
   String toString() {
-    return 'Venue{address: $userId, id: $email, '
+    return 'Account{userId: $userId, email: $email, '
         'EventsFollowed: $eventsFollowed, VenuesFollowed: $venuesFollowed}';
   }
 
@@ -32,13 +35,12 @@ class Account extends Equatable{
     return AccountEntity(userId, email, eventsFollowed, venuesFollowed);
   }
 
-  static Account fromEntity(AccountEntity entity){
+  static Account fromEntity(AccountEntity entity) {
     return Account(
-        entity.userId,
-        entity.email,
+      entity.userId,
+      entity.email,
       entity.eventsFollowed,
       entity.venuesFollowed,
     );
   }
-
 }
