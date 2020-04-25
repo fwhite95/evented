@@ -11,20 +11,20 @@
 
 # Requirements
 ## Venue and event data must be requested from separate backend
-### Either api or database*
+### -Either api or database*
 ## App must have a login page
-### User info stored in database
+### -User info stored in database
 ## App must have a sign up page
-### User input for username and password
+### -User input for username and password
 ## App must have a find events by venue type page
 ## App must have a search page
-### Able to search for venues or event name
+### -Able to search for venues or event name
 ## App must have a home page
-### Displays events that are followed
-### Displays event by date of occurence
+### -Displays events that are followed
+### -Displays event by date of occurence
 ## App must have a favorites page
-### Displays favorited venues
-### Favorites page must persist between use
+### -Displays favorited venues
+### -Favorites page must persist between use
 ## App must have a settings page
 ## App must have a details page for individual venues
 ## App must have a details page for individual events
