@@ -30,6 +30,11 @@
 ## App must have a details page for individual events
 ## App must have a correctly populated README.md file
 
+#App photos
+#### In case the universe hates me and it won't run
+![evented_loginPage](https://user-images.githubusercontent.com/27833223/80270956-7fb1b300-8671-11ea-8403-5cc4d6840a64.PNG)
+
+
 # Run the App 
 
 ## Option 1: Android Studio
@@ -62,3 +67,4 @@
 ## 1. After downloading the project from github it can be run by: 
 ### 1. Having an android phone connected through usb cable and running through Android Studio or VSCode
 ### 2. Using the terminal and installing with flutter install (directory should be the base of the project)
+
