@@ -39,6 +39,9 @@
 ![evented_venuePage](https://user-images.githubusercontent.com/27833223/80271162-665d3680-8672-11ea-8a30-72ed3beff52a.PNG)
 ![evented_settingsPage](https://user-images.githubusercontent.com/27833223/80271164-6a895400-8672-11ea-88a3-93d6673f6267.PNG)
 
+#Firestore Database
+![evented_userDB](https://user-images.githubusercontent.com/27833223/80271202-f3a08b00-8672-11ea-8b10-ba210790ca33.PNG)
+![evented_veneusDB](https://user-images.githubusercontent.com/27833223/80271204-f4392180-8672-11ea-8077-089fb56321d9.PNG)
 # Run the App 
 
 ## Option 1: Android Studio
