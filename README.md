@@ -4,8 +4,14 @@
 ## Student ID    : 920051012
 
 
-## src folder is to be used for source code only.
+## IDE: Android Studios
 
-## resources folder is to be used to store the resources for your project only. This includes images, sounds, map text files, etc.
+## Working Directory: csc413_termproject_fwhite
 
-## jar folder is used to store the built jar of your term-project. NO SOURCE CODE SHOULD BE IN THIS FOLDER. DOING SO WILL CAUSE POINTS TO BE DEDUCTED
+# Run the App 
+
+## Option 1: Android Studio
+
+### 1. Using Android studio create a new project from vcs using git
+### 2. Use the github link to download the project
+### 3. While the project is downloading it may ask to configure with android, DO NOT. 
