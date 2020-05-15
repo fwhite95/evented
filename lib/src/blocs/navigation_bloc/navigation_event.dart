@@ -15,19 +15,7 @@ class NavigateToFollowedPageEvent extends NavigationEvent {}
 
 class NavigateToLoginPageEvent extends NavigationEvent {}
 
-class NavigateToHomeEvent extends NavigationEvent{
-  final String name;
-
-  NavigateToHomeEvent({this.name});
-
-  @override
-  List<Object> get props => [name];
-
-  @override
-  String toString() {
-    return 'VenueAdded {venue: $name }';
-  }
-}
+class NavigateToHomeEvent extends NavigationEvent{}
 
 class NavigateToVenuePageEvent extends NavigationEvent {}
 

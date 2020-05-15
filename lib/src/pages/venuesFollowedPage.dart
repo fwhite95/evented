@@ -61,6 +61,7 @@ class _VenuesFollowedPageState extends State<VenuesFollowedPage> {
           final venues = (state as VenueFollowedLoaded).venues;
           if(venues != null){
             return Scaffold(
+              appBar: AppBar(title: Text('Venues Followed'),),
                 bottomNavigationBar: MainNavBar(),
                 body: Padding(
                   padding: EdgeInsets.all(16),

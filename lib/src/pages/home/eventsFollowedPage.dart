@@ -7,16 +7,16 @@ import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_states.dart';
 import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
 import 'package:csc413termprojectfwhite/src/resources/firebase_repository.dart';
 import 'package:csc413termprojectfwhite/src/ui/appBar.dart';
+import 'package:csc413termprojectfwhite/src/ui/timeFormatText.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeScreen extends StatelessWidget {
-
+class EventsFollowedPage extends StatelessWidget {
   final Account _account;
   final FirebaseRepository _firebaseRepository;
 
-  HomeScreen({Key key, @required account, @required firebaseRepository}) :
-        _account = account,
+  EventsFollowedPage({Key key, @required account, @required firebaseRepository})
+      : _account = account,
         _firebaseRepository = firebaseRepository,
         super(key: key);
 
@@ -45,11 +45,14 @@ class HomeScreen extends StatelessWidget {
               ),
             );
           }
-          //Check if venues is empty
+          //Check if events is empty
           //Possibly wrap with try/catch instead
           final events = (state as EventsFollowedLoaded).events;
-          if(events != null){
+          if (events != null) {
             return Scaffold(
+                appBar: AppBar(
+                  title: Text('Events Followed'),
+                ),
                 bottomNavigationBar: MainNavBar(),
                 body: Padding(
                   padding: EdgeInsets.all(16),
@@ -59,8 +62,7 @@ class HomeScreen extends StatelessWidget {
                         return Card(
                           child: ListTile(
                             title: Text(events[index].name),
-                            subtitle: Text(
-                                'Date: ${events[index].date}'),
+                            subtitle: DateTimeFormat(time: events[index].date),
                             trailing: IconButton(
                               icon: Icon(Icons.remove_circle),
                               onPressed: () {},
@@ -69,12 +71,11 @@ class HomeScreen extends StatelessWidget {
                         );
                       }),
                 ));
-          }else {
+          } else {
             return Container(
               child: Text('Error: Venue empty'),
             );
           }
-
         },
       ),
     );

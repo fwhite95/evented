@@ -21,7 +21,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
 
-import 'home_screen.dart';
+import 'eventsFollowedPage.dart';
 
 class HomePage extends StatelessWidget {
   final FirebaseRepository _firebaseRepository;
@@ -40,13 +40,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<VenueBloc>(
-          create: (context) {
-            return VenueBloc(
-              venuesRepository: FirebaseRepository(),
-            )..add(LoadVenue());
-          },
-        ),
         BlocProvider<AccountBloc>(
           create: (context) {
             return AccountBloc(
@@ -59,18 +52,12 @@ class HomePage extends StatelessWidget {
             return NavigationBloc();
           },
         ),
-        BlocProvider<VenueFollowedBloc>(
-          create: (context) {
-            return VenueFollowedBloc(venuesRepository: _firebaseRepository)
-              ..add(VenuesFollowedLoadEvent(account: _account));
-          },
-        ),
       ],
       child: MaterialApp(
         home: BlocBuilder<NavigationBloc, NavigationState>(
           builder: (context, state) {
             if (state is NavigationHomePageState) {
-              return HomeScreen(account: _account, firebaseRepository: _firebaseRepository,);
+              return EventsFollowedPage(account: _account, firebaseRepository: _firebaseRepository,);
             }
             if (state is NavigationSettingsPageState) {
               return SettingsPage();
