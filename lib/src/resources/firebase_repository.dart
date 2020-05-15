@@ -1,9 +1,9 @@
 import 'dart:async';
-
+import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:csc413termprojectfwhite/src/entities/account_entity.dart';
 import 'package:csc413termprojectfwhite/src/entities/venue_entity.dart';
-import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
+import 'package:csc413termprojectfwhite/src/models/eventModel.dart';
 import 'package:csc413termprojectfwhite/src/models/venueModel.dart';
 import 'package:csc413termprojectfwhite/src/resources/firebase_provider.dart';
 
@@ -15,6 +15,24 @@ class FirebaseRepository {
   //Account + Venue functions
 
   //Write new methods to work with provider
+
+  //Get events followed
+  List<Events> eventsFollowedFromProvider(Account account){
+    List<Events> eventsFollowed = [];
+    //I am gonna leave it for now, but ew
+    firebaseProvider.getVenues().listen((venues) {
+      for(Venue v in venues){
+        for(Events e in v.events){
+          for(String name in account.eventsFollowed){
+            if(name == e.name){
+              eventsFollowed.add(e);
+            }
+          }
+        }
+      }
+    });
+    return eventsFollowed;
+  }
 
   //VenueFollowedPage function
   //1. Takes list of venues followed from account object

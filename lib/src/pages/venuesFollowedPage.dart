@@ -56,27 +56,36 @@ class _VenuesFollowedPageState extends State<VenuesFollowedPage> {
               ),
             );
           }
+          //Check if venues is empty
+          //Possibly wrap with try/catch instead
           final venues = (state as VenueFollowedLoaded).venues;
-          return Scaffold(
-              bottomNavigationBar: MainNavBar(),
-              body: Padding(
-                padding: EdgeInsets.all(16),
-                child: ListView.builder(
-                    itemCount: venues.length,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        child: ListTile(
-                          title: Text(venues[index].name),
-                          subtitle: Text(
-                              'Label: ${venues[index].label} \nAddress: ${venues[index].address}'),
-                          trailing: IconButton(
-                            icon: Icon(Icons.remove_circle),
-                            onPressed: () {},
+          if(venues != null){
+            return Scaffold(
+                bottomNavigationBar: MainNavBar(),
+                body: Padding(
+                  padding: EdgeInsets.all(16),
+                  child: ListView.builder(
+                      itemCount: venues.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          child: ListTile(
+                            title: Text(venues[index].name),
+                            subtitle: Text(
+                                'Label: ${venues[index].label} \nAddress: ${venues[index].address}'),
+                            trailing: IconButton(
+                              icon: Icon(Icons.remove_circle),
+                              onPressed: () {},
+                            ),
                           ),
-                        ),
-                      );
-                    }),
-              ));
+                        );
+                      }),
+                ));
+          }else {
+            return Container(
+              child: Text('Error: Venue empty'),
+            );
+          }
+
         },
       ),
     );

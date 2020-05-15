@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
         home: BlocBuilder<NavigationBloc, NavigationState>(
           builder: (context, state) {
             if (state is NavigationHomePageState) {
-              return HomeScreen(account: _account);
+              return HomeScreen(account: _account, firebaseRepository: _firebaseRepository,);
             }
             if (state is NavigationSettingsPageState) {
               return SettingsPage();
