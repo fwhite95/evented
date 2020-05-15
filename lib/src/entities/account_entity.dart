@@ -6,8 +6,8 @@ import 'package:equatable/equatable.dart';
 class AccountEntity extends Equatable {
   final String userId;
   final String email;
-  final List<String> eventsFollowed;
-  final List<String> venuesFollowed;
+  final List<dynamic> eventsFollowed;
+  final List<dynamic> venuesFollowed;
 
   const AccountEntity(this.userId, this.email, this.eventsFollowed, this.venuesFollowed);
 
@@ -44,6 +44,7 @@ class AccountEntity extends Equatable {
     return AccountEntity(
       snapshot.data['userId'],
       snapshot.data['email'],
+      //Events.fromSnapshot(snapshot.data['events']),
       snapshot.data['eventsFollowed'],
       snapshot.data['venuesFollowed'],
     );

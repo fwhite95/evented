@@ -38,6 +38,7 @@ class AuthenticationBloc
     try{
       final isSignedIn = await _userRepository.isSignedIn();
       if(isSignedIn){
+        //Part causing problems probably
         final name = await _userRepository.getUser();
         final Account account = await _firebaseRepository.getAccount(name);
         yield Authenticated(name, account);
@@ -51,6 +52,7 @@ class AuthenticationBloc
 
   Stream<AuthenticationState> _mapLoggedInToState() async*{
     final name = await _userRepository.getUser();
+    print('List error');
     final Account account = await _firebaseRepository.getAccount(name);
     yield Authenticated(name, account);
   }

@@ -24,20 +24,6 @@ class VenueAdded extends VenueEvent {
   }
 }
 
-class UpdateVenue extends VenueEvent {
-  final Venue venue;
-
-  const UpdateVenue(this.venue);
-
-  @override
-  List<Object> get props => [venue];
-
-  @override
-  String toString() {
-    return 'VenueUpdated {venue: $venue }';
-  }
-}
-
 class VenueDeleted extends VenueEvent {
   final Venue venue;
 

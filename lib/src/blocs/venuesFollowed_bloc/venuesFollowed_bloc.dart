@@ -29,7 +29,8 @@ class VenueFollowedBloc extends Bloc<VenueFollowedEvent, VenueFollowedState> {
   }
 
   Stream<VenueFollowedState> _mapLoadVenueFollowedToState(VenuesFollowedLoadEvent event) async* {
-    yield VenueFollowedLoaded(await _firebaseRepository.venuesFollowedFromAccount(event.account));
+    //_firebaseRepository.venuesFollowedFromProvider(event.account);
+    yield VenueFollowedLoaded(_firebaseRepository.venuesFollowedFromProvider(event.account));
   }
 
 

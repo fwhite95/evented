@@ -23,6 +23,8 @@ class SearchPage extends StatelessWidget {
             ),
           );
         }
+        //doesnt load states, only loads the venues from the venueLoaded method
+        //State is not correct
         final venues = (state as VenueLoaded).venues;
         for(Venue v in venues){
           if(v.name.contains(_controller.text)){

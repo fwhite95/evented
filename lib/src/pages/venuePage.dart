@@ -2,54 +2,67 @@ import 'package:csc413termprojectfwhite/src/blocs/account_bloc/account_bloc.dart
 import 'package:csc413termprojectfwhite/src/blocs/account_bloc/account_event.dart';
 import 'package:csc413termprojectfwhite/src/blocs/auth_bloc/authentication_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_bloc.dart';
+import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_events.dart';
 import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_states.dart';
 import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
 import 'package:csc413termprojectfwhite/src/models/venueModel.dart';
+import 'package:csc413termprojectfwhite/src/resources/firebase_repository.dart';
 import 'package:csc413termprojectfwhite/src/ui/appBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VenuePage extends StatelessWidget {
-  final String name;
+  final Account _account;
+  final FirebaseRepository _firebaseRepository;
 
 
-  VenuePage({Key key, @required this.name}) : super(key: key);
+  VenuePage({Key key, @required account, @required firebaseRepository}) :
+      _firebaseRepository = firebaseRepository,
+        _account = account,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<VenueBloc, VenueState>(
-      builder: (context, state) {
-        if (state is VenueLoading) {
+    return BlocProvider<VenueBloc>(
+      create: (context) {
+        return VenueBloc(
+          venuesRepository: _firebaseRepository,
+        )..add(LoadVenue());
+      },
+      child: BlocBuilder<VenueBloc, VenueState>(
+        builder: (context, state) {
+          if (state is VenueLoading) {
+            return Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+          final venues = (state as VenueLoaded).venues;
           return Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
+            bottomNavigationBar: MainNavBar(account: _account,),
+            appBar: AppBar(
+              title: Text("Venue Search Page"),
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.exit_to_app),
+                  onPressed: () {
+                    BlocProvider.of<AuthenticationBloc>(context).add(
+                      LoggedOut(), //check this works
+                    );
+                  },
+                ),
+              ],
+            ),
+            body: Padding(
+              padding: EdgeInsets.all(16),
+              child: VenueTypeTiles(
+                venues: venues,
+              ),
             ),
           );
-        }
-        final venues = (state as VenueLoaded).venues;
-        return Scaffold(
-          bottomNavigationBar: MainNavBar(),
-          appBar: AppBar(
-            title: Text("Venue Search Page"),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(Icons.exit_to_app),
-                onPressed: () {
-                  BlocProvider.of<AuthenticationBloc>(context).add(
-                    LoggedOut(), //check this works
-                  );
-                },
-              ),
-            ],
-          ),
-          body: Padding(
-            padding: EdgeInsets.all(16),
-            child: VenueTypeTiles(
-              venues: venues,
-            ),
-          ),
-        );
-      },
+        },
+      ),
     );
   }
 }

@@ -4,16 +4,16 @@ import 'package:equatable/equatable.dart';
 class Account extends Equatable {
   final String userId;
   final String email;
-  final List<String> venuesFollowed;
-  final List<String> eventsFollowed;
+  final List<dynamic> venuesFollowed;
+  final List<dynamic> eventsFollowed;
 
   Account(this.userId, this.email, this.eventsFollowed, this.venuesFollowed);
 
   Account copyWith(
       {String userId,
       String email,
-      List<String> eventsFollowed,
-      List<String> venuesFollowed}) {
+      List<dynamic> eventsFollowed,
+      List<dynamic> venuesFollowed}) {
     return Account(
       userId ?? this.userId,
       email ?? this.email,
