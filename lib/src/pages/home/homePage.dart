@@ -63,14 +63,14 @@ class HomePage extends StatelessWidget {
               return SettingsPage();
             }
             if (state is NavigationVenuePageState) {
-              return VenuePage(firebaseRepository: _firebaseRepository,);
+              return VenuePage(firebaseRepository: _firebaseRepository, account: _account,);
             }
             if (state is NavigationFollowedPageState) {
               return VenuesFollowedPage(
                   firebaseRepository: _firebaseRepository, account: _account,);
             }
             if (state is NavigationSearchPageState) {
-              return SearchPage();
+              return SearchPage(account: _account, firebaseRepository: _firebaseRepository,);
             }
             return Container(
               child: Text('Help :D'),

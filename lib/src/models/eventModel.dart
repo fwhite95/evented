@@ -19,7 +19,7 @@ class Events extends Equatable {
 
   @override
   String toString() {
-    return 'Venue{address: $name, date: $date}';
+    return 'Event{name: $name, date: $date}';
   }
 
   static List<Events> fromSnapshot(List<dynamic> events){

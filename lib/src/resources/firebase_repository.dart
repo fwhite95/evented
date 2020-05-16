@@ -16,6 +16,26 @@ class FirebaseRepository {
 
   //Write new methods to work with provider
 
+  //Get venues from search
+  List<dynamic> getSearchResultsFromProvider(String search){
+    List<dynamic> searchResults = [];
+    firebaseProvider.getVenues().listen((venues) {
+      for(Venue v in venues){
+        if(v.name.toLowerCase().contains(search.toLowerCase())){
+          searchResults.add(v);
+        }
+        for(Events e in v.events){
+          if(e.name.toLowerCase().contains(search.toLowerCase())){
+            searchResults.add(e);
+          }
+        }
+      }
+    });
+
+    return searchResults;
+  }
+
+
   //Get events followed
   List<Events> eventsFollowedFromProvider(Account account){
     List<Events> eventsFollowed = [];
@@ -50,7 +70,6 @@ class FirebaseRepository {
         }
       }
     });
-    print('Printing venues Followed: ');
     return venuesFollowed;
   }
 
@@ -114,4 +133,5 @@ class FirebaseRepository {
           .toList();
     });
   }
+
 }
