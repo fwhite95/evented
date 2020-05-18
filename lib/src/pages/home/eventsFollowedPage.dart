@@ -65,7 +65,12 @@ class EventsFollowedPage extends StatelessWidget {
                             subtitle: DateTimeFormat(time: events[index].date),
                             trailing: IconButton(
                               icon: Icon(Icons.remove_circle),
-                              onPressed: () {},
+                              onPressed: () {
+                                _account.eventsFollowed.remove(events[index].name);
+                                BlocProvider.of<EventsFollowedBloc>(context).add(
+                                  EventsFollowedAccountUpdate(account: _account),
+                                );
+                              },
                             ),
                           ),
                         );

@@ -16,6 +16,20 @@ class FirebaseRepository {
 
   //Write new methods to work with provider
 
+  Account updateAccount(Account account){
+    firebaseProvider.updateAccount(account);
+    return account;
+  }
+
+  Future<List<Venue>> updateVenuesFollowed(Account account) async{
+    firebaseProvider.updateAccount(account);
+    List<Venue> theVenues = [];
+    firebaseProvider.getVenues().listen((venues) {
+    });
+    return firebaseProvider.getVenues().first;
+
+  }
+
   //Get venues from search
   List<dynamic> getSearchResultsFromProvider(String search){
     List<dynamic> searchResults = [];
@@ -35,12 +49,11 @@ class FirebaseRepository {
     return searchResults;
   }
 
-
   //Get events followed
-  List<Events> eventsFollowedFromProvider(Account account){
+  Future<List<Events>> eventsFollowedFromProvider(Account account) async{
     List<Events> eventsFollowed = [];
     //I am gonna leave it for now, but ew
-    firebaseProvider.getVenues().listen((venues) {
+    List<Venue> venues = await firebaseProvider.getVenues().first;
       for(Venue v in venues){
         for(Events e in v.events){
           for(String name in account.eventsFollowed){
@@ -50,7 +63,7 @@ class FirebaseRepository {
           }
         }
       }
-    });
+
     return eventsFollowed;
   }
 
@@ -117,12 +130,6 @@ class FirebaseRepository {
     final Account account =
         Account.fromEntity(AccountEntity.fromSnapshot(snap));
     return account;
-  }
-
-  Future<void> updateAccount(Account update) {
-    return accountCollection
-        .document(update.userId)
-        .updateData(update.toEntity().toDocument());
   }
 
   //Venue Collection methods

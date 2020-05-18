@@ -26,7 +26,7 @@ class SearchPage extends StatelessWidget {
       body: BlocProvider<SearchBloc>(
         create: (context) =>
             SearchBloc(firebaseRepository: _firebaseRepository),
-        child: SearchForm(firebaseRepository: _firebaseRepository),
+        child: SearchForm(firebaseRepository: _firebaseRepository, account: _account),
       ),
     );
   }

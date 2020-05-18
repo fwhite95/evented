@@ -22,11 +22,18 @@ class EventsFollowedBloc extends Bloc<EventsFollowedEvent, EventsFollowedState> 
       }catch(_){
         yield EventsFollowedLoadFailure();
       }
+    }else if(event is EventsFollowedAccountUpdate){
+      yield* _mapEventsFollowedAccountUpdateToState(event);
     }
   }
 
   Stream<EventsFollowedState> _mapGetEventsFollowedToState(GetEventsFollowed event) async*{
-    yield EventsFollowedLoaded(_firebaseRepository.eventsFollowedFromProvider(event.account));
+    _firebaseRepository.updateAccount(event.account);
+    yield EventsFollowedLoaded(await _firebaseRepository.eventsFollowedFromProvider(event.account));
   }
+
+ Stream<EventsFollowedState> _mapEventsFollowedAccountUpdateToState(EventsFollowedAccountUpdate event) async*{
+   yield EventsFollowedLoaded(await _firebaseRepository.eventsFollowedFromProvider(event.account));
+ }
 
 }

@@ -1,3 +1,4 @@
+import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -6,6 +7,22 @@ abstract class SearchEvent extends Equatable {
 
   @override
   List<Object> get props => [];
+}
+
+class SearchAccountUpdate extends SearchEvent {
+  final Account account;
+  final String search;
+
+  const SearchAccountUpdate({@required this.account,
+    @required this.search});
+
+  @override
+  List<Object> get props => [account, search];
+
+  @override
+  String toString() {
+    return 'SearchAccountUpdated: {account: $account, search: $search}';
+  }
 }
 
 class SearchChanged extends SearchEvent{

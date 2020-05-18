@@ -18,10 +18,10 @@ class GetEventsFollowed extends EventsFollowedEvent {
   List<Object> get props => [account];
 }
 
-class RemoveAFollowedEventEvent extends EventsFollowedEvent {
+class EventsFollowedAccountUpdate extends EventsFollowedEvent {
   final Account account;
 
-  const RemoveAFollowedEventEvent({@required this.account});
+  const EventsFollowedAccountUpdate({@required this.account});
 
   @override
   List<Object> get props => [account];

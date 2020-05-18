@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:csc413termprojectfwhite/src/blocs/venueSearch_bloc/venueSearch_event.dart';
 import 'package:csc413termprojectfwhite/src/blocs/venueSearch_bloc/venueSearch_state.dart';
+import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
 import 'package:csc413termprojectfwhite/src/resources/firebase_repository.dart';
 import 'package:csc413termprojectfwhite/src/models/eventModel.dart';
 import 'package:csc413termprojectfwhite/src/models/venueModel.dart';
@@ -39,7 +40,14 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   Stream<SearchState> mapEventToState(SearchEvent event) async*{
     if(event is SearchChanged){
       yield* _mapSearchChangedToState(event.search);
+    }else if(event is SearchAccountUpdate){
+      yield* _mapSearchAccountUpdateToState(event);
     }
+  }
+
+  Stream<SearchState> _mapSearchAccountUpdateToState(SearchAccountUpdate event) async*{
+    _firebaseRepository.updateAccount(event.account);
+    yield SearchLoaded(_firebaseRepository.getSearchResultsFromProvider(event.search));
   }
 
   Stream<SearchState> _mapSearchChangedToState(String search) async* {

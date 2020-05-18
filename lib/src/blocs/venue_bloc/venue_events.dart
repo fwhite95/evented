@@ -1,3 +1,4 @@
+import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
 import 'package:csc413termprojectfwhite/src/models/venueModel.dart';
 import 'package:equatable/equatable.dart';
 
@@ -9,6 +10,20 @@ abstract class VenueEvent extends Equatable{
 }
 
 class LoadVenue extends VenueEvent {}
+
+class VenueAccountUpdated extends VenueEvent{
+  final Account account;
+
+  const VenueAccountUpdated(this.account);
+
+  @override
+  List<Object> get props => [account];
+
+  @override
+  String toString() {
+    return 'VenueAccountUpdated {account: $account }';
+  }
+}
 
 class VenueAdded extends VenueEvent {
   final Venue venue;

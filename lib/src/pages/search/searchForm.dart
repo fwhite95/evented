@@ -1,6 +1,7 @@
 import 'package:csc413termprojectfwhite/src/blocs/venueSearch_bloc/venueSearch_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/venueSearch_bloc/venueSearch_event.dart';
 import 'package:csc413termprojectfwhite/src/blocs/venueSearch_bloc/venueSearch_state.dart';
+import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
 import 'package:csc413termprojectfwhite/src/models/eventModel.dart';
 import 'package:csc413termprojectfwhite/src/models/venueModel.dart';
 import 'package:csc413termprojectfwhite/src/resources/firebase_repository.dart';
@@ -10,10 +11,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchForm extends StatefulWidget {
   final FirebaseRepository _firebaseRepository;
+  final Account _account;
 
-  SearchForm({Key key, @required firebaseRepository})
+  SearchForm({Key key, @required firebaseRepository, @required account})
       : assert(firebaseRepository != null),
         _firebaseRepository = firebaseRepository,
+        _account = account,
         super(key: key);
 
   State<SearchForm> createState() => _SearchFormState();
@@ -24,6 +27,7 @@ class _SearchFormState extends State<SearchForm> {
 
   SearchBloc _searchBloc;
 
+  Account get _account => widget._account;
   FirebaseRepository get _firebaseRepository => widget._firebaseRepository;
   //Maybe need this?
   //bool get isPopulated => _searchController.text.isNotEmpty;
@@ -105,7 +109,12 @@ class _SearchFormState extends State<SearchForm> {
                                   'Label: ${searchResults[index].label} \nAddress: ${searchResults[index].address}'),
                               trailing: IconButton(
                                 icon: Icon(Icons.add),
-                                onPressed: () {},
+                                onPressed: () {
+                                  _account.venuesFollowed.add(searchResults[index].id);
+                                  BlocProvider.of<SearchBloc>(context).add(
+                                    SearchAccountUpdate(account: _account, search: _searchController.text),
+                                  );
+                                },
                               ),
                             ),
                           );
@@ -117,7 +126,12 @@ class _SearchFormState extends State<SearchForm> {
                               subtitle: DateTimeFormat(time: searchResults[index].date),
                               trailing: IconButton(
                                 icon: Icon(Icons.add),
-                                onPressed: () {},
+                                onPressed: () {
+                                  _account.eventsFollowed.add(searchResults[index].id);
+                                  BlocProvider.of<SearchBloc>(context).add(
+                                    SearchAccountUpdate(account: _account, search: _searchController.text),
+                                  );
+                                },
                               ),
                             ),
                           );
