@@ -1,5 +1,3 @@
-import 'package:csc413termprojectfwhite/src/resources/firebase_account_repository.dart';
-import 'package:csc413termprojectfwhite/src/resources/user_repository.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class NavigationEvent extends Equatable{

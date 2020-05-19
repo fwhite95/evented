@@ -25,12 +25,19 @@ class VenueFollowedBloc extends Bloc<VenueFollowedEvent, VenueFollowedState> {
         print('Error: VenueFollowedBloc');
         yield VenueFollowedLoadFailure();
       }
+    }else if(event is VenuesFollowedAccountUpdate){
+      yield* _mapVenuesFollowedAccountUpdateToState(event);
     }
+  }
+
+  Stream<VenueFollowedState> _mapVenuesFollowedAccountUpdateToState(VenuesFollowedAccountUpdate event) async*{
+    _firebaseRepository.updateAccount(event.account);
+    yield VenueFollowedLoaded(await _firebaseRepository.venuesFollowedFromProvider(event.account));
   }
 
   Stream<VenueFollowedState> _mapLoadVenueFollowedToState(VenuesFollowedLoadEvent event) async* {
     //_firebaseRepository.venuesFollowedFromProvider(event.account);
-    yield VenueFollowedLoaded(_firebaseRepository.venuesFollowedFromProvider(event.account));
+    yield VenueFollowedLoaded(await _firebaseRepository.venuesFollowedFromProvider(event.account));
   }
 
 

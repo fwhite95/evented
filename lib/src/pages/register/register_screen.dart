@@ -1,6 +1,5 @@
 import 'package:csc413termprojectfwhite/src/blocs/register_bloc/register_bloc.dart';
 import 'package:csc413termprojectfwhite/src/pages/register/register_form.dart';
-import 'package:csc413termprojectfwhite/src/resources/firebase_account_repository.dart';
 import 'package:csc413termprojectfwhite/src/resources/firebase_repository.dart';
 import 'package:csc413termprojectfwhite/src/resources/user_repository.dart';
 import 'package:flutter/material.dart';

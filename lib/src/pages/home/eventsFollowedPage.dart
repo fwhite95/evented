@@ -7,6 +7,7 @@ import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_states.dart';
 import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
 import 'package:csc413termprojectfwhite/src/resources/firebase_repository.dart';
 import 'package:csc413termprojectfwhite/src/ui/appBar.dart';
+import 'package:csc413termprojectfwhite/src/ui/eventDetailPage.dart';
 import 'package:csc413termprojectfwhite/src/ui/timeFormatText.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -72,6 +73,13 @@ class EventsFollowedPage extends StatelessWidget {
                                 );
                               },
                             ),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) =>
+                                      EventDetailPage(event: events[index],))
+                              );
+                            },
                           ),
                         );
                       }),

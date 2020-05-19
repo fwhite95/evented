@@ -4,6 +4,7 @@ import 'package:csc413termprojectfwhite/src/blocs/venuesFollowed_bloc/venuesFoll
 import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
 import 'package:csc413termprojectfwhite/src/resources/firebase_repository.dart';
 import 'package:csc413termprojectfwhite/src/ui/appBar.dart';
+import 'package:csc413termprojectfwhite/src/ui/venueDetailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -75,15 +76,27 @@ class _VenuesFollowedPageState extends State<VenuesFollowedPage> {
                                 'Label: ${venues[index].label} \nAddress: ${venues[index].address}'),
                             trailing: IconButton(
                               icon: Icon(Icons.remove_circle),
-                              onPressed: () {},
+                              onPressed: () {
+                                _account.venuesFollowed.remove(venues[index].id);
+                                BlocProvider.of<VenueFollowedBloc>(context).add(
+                                  VenuesFollowedAccountUpdate(_account),
+                                );
+                              },
                             ),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) =>
+                                      VenueDetailPage(venue: venues[index],))
+                              );
+                            },
                           ),
                         );
                       }),
                 ));
           }else {
             return Container(
-              child: Text('Error: Venue empty'),
+              child: Text('Venue Followed empty'),
             );
           }
 

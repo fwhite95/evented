@@ -19,14 +19,16 @@ class VenuesFollowedLoadEvent extends VenueFollowedEvent {
 }
 
 
-//class VenuesFollowedUpdatedEvent extends VenueFollowedEvent{
-//  final List<String> venuesFollowed;
-//
-//  const VenuesFollowedUpdatedEvent(this.venuesFollowed);
-//
-//  @override
-//  List<Object> get props => [venuesFollowed];
-//}
+class VenuesFollowedAccountUpdate extends VenueFollowedEvent{
+  final Account account;
+
+  const VenuesFollowedAccountUpdate(this.account);
+
+  @override
+  List<Object> get props => [account];
+
+
+}
 
 class VenuesUnFollowedEvent extends VenueFollowedEvent {}
 

@@ -23,9 +23,6 @@ class FirebaseRepository {
 
   Future<List<Venue>> updateVenuesFollowed(Account account) async{
     firebaseProvider.updateAccount(account);
-    List<Venue> theVenues = [];
-    firebaseProvider.getVenues().listen((venues) {
-    });
     return firebaseProvider.getVenues().first;
 
   }
@@ -72,9 +69,9 @@ class FirebaseRepository {
   //2. Uses the list to get Venues from venue collection
   //3. Returns a list of followed venues
 
-  List<Venue> venuesFollowedFromProvider(Account account) {
+  Future<List<Venue>> venuesFollowedFromProvider(Account account) async{
     List<Venue> venuesFollowed = [];
-    firebaseProvider.getVenues().listen((venues) {
+    List<Venue> venues = await firebaseProvider.getVenues().first;
       for (Venue v in venues) {
         for (String id in account.venuesFollowed) {
           if (v.id == id) {
@@ -82,7 +79,6 @@ class FirebaseRepository {
           }
         }
       }
-    });
     return venuesFollowed;
   }
 
