@@ -124,7 +124,7 @@ class _SearchFormState extends State<SearchForm> {
                               trailing: IconButton(
                                 icon: Icon(Icons.add),
                                 onPressed: () {
-                                  _account.eventsFollowed.add(searchResults[index].id);
+                                  _account.eventsFollowed.add(searchResults[index].name);
                                   BlocProvider.of<SearchBloc>(context).add(
                                     SearchAccountUpdate(account: _account, search: _searchController.text),
                                   );

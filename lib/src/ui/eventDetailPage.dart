@@ -26,10 +26,9 @@ class EventDetailPage extends StatelessWidget{
             ),
 
             SizedBox(height: 20,),
-            Text('Date: ${DateTimeFormat(time: _events.date,).toString()}',
-              style: TextStyle(
-                fontSize: 20,
-              ),),
+            DateTimeFormat(time: _events.date, textStyle: TextStyle(
+              fontSize: 20,
+            ),),
             SizedBox(height: 10,),
           ],
         ),

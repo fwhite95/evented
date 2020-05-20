@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 class DateTimeFormat extends StatelessWidget{
   final Timestamp _time;
+  final TextStyle _textStyle;
 
-  DateTimeFormat({Key key, @required time})
+  DateTimeFormat({Key key, @required time, TextStyle textStyle})
   : _time = time,
+  _textStyle = textStyle,
   super(key: key);
 
   @override
@@ -14,6 +16,7 @@ class DateTimeFormat extends StatelessWidget{
         '${_time.toDate().day}'
         '\t Time: ${_time.toDate().hour}:'
         '${_time.toDate().minute}'
-        '${_time.toDate().second}');
+        '${_time.toDate().second}',
+    style: _textStyle,);
   }
 }

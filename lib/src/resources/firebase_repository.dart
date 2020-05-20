@@ -28,9 +28,9 @@ class FirebaseRepository {
   }
 
   //Get venues from search
-  List<dynamic> getSearchResultsFromProvider(String search){
+  Future<List<dynamic>> getSearchResultsFromProvider(String search) async{
     List<dynamic> searchResults = [];
-    firebaseProvider.getVenues().listen((venues) {
+    List<Venue> venues = await firebaseProvider.getVenues().first;
       for(Venue v in venues){
         if(v.name.toLowerCase().contains(search.toLowerCase())){
           searchResults.add(v);
@@ -41,7 +41,6 @@ class FirebaseRepository {
           }
         }
       }
-    });
 
     return searchResults;
   }

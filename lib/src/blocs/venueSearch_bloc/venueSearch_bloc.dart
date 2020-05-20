@@ -44,14 +44,14 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   Stream<SearchState> _mapSearchAccountUpdateToState(SearchAccountUpdate event) async*{
     _firebaseRepository.updateAccount(event.account);
-    yield SearchLoaded(_firebaseRepository.getSearchResultsFromProvider(event.search));
+    yield SearchLoaded(await _firebaseRepository.getSearchResultsFromProvider(event.search));
   }
 
   Stream<SearchState> _mapSearchChangedToState(String search) async* {
     yield SearchLoading();
     try{
       List<dynamic> searchResults =
-        _firebaseRepository.getSearchResultsFromProvider(search);
+        await _firebaseRepository.getSearchResultsFromProvider(search);
 
       yield SearchLoaded(searchResults);
     }catch(_){

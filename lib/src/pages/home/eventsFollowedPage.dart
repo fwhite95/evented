@@ -13,6 +13,7 @@ class EventsFollowedPage extends StatelessWidget {
   final Account _account;
   final FirebaseRepository _firebaseRepository;
 
+
   EventsFollowedPage({Key key, @required account, @required firebaseRepository})
       : _account = account,
         _firebaseRepository = firebaseRepository,
@@ -46,6 +47,7 @@ class EventsFollowedPage extends StatelessWidget {
           //Check if events is empty
           //Possibly wrap with try/catch instead
           final events = (state as EventsFollowedLoaded).events;
+          events.sort((a,b)=> a.date.compareTo(b.date));
           if (events != null) {
             return Scaffold(
                 appBar: AppBar(
