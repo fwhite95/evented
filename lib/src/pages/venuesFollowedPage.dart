@@ -43,7 +43,7 @@ class _VenuesFollowedPageState extends State<VenuesFollowedPage> {
         builder: (context, state) {
           if (state is VenueFollowedLoading) {
             return Scaffold(
-              bottomNavigationBar: MainNavBar(),
+              bottomNavigationBar: MainNavBar(account: _account, firebaseRepository: _firebaseRepository,),
               body: Center(
                 child: Text(state.toString()),
               ),
@@ -51,7 +51,7 @@ class _VenuesFollowedPageState extends State<VenuesFollowedPage> {
           }
           if (state is VenueFollowedLoadFailure) {
             return Scaffold(
-              bottomNavigationBar: MainNavBar(),
+              bottomNavigationBar: MainNavBar(account: _account, firebaseRepository: _firebaseRepository,),
               body: Center(
                 child: Text(state.toString()),
               ),
@@ -63,7 +63,7 @@ class _VenuesFollowedPageState extends State<VenuesFollowedPage> {
           if(venues != null){
             return Scaffold(
               appBar: AppBar(title: Text('Venues Followed'),),
-                bottomNavigationBar: MainNavBar(),
+                bottomNavigationBar: MainNavBar(account: _account, firebaseRepository: _firebaseRepository,),
                 body: Padding(
                   padding: EdgeInsets.all(16),
                   child: ListView.builder(

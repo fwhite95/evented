@@ -1,5 +1,4 @@
-import 'package:csc413termprojectfwhite/src/models/eventModel.dart';
-import 'package:csc413termprojectfwhite/src/models/venueModel.dart';
+
 import 'package:equatable/equatable.dart';
 
 abstract class SearchState extends Equatable{

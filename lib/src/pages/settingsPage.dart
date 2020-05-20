@@ -1,5 +1,7 @@
 
 import 'package:csc413termprojectfwhite/src/blocs/auth_bloc/authentication_bloc.dart';
+import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
+import 'package:csc413termprojectfwhite/src/resources/firebase_repository.dart';
 import 'package:csc413termprojectfwhite/src/ui/appBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,13 +9,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 class SettingsPage extends StatelessWidget {
-  SettingsPage({Key key}) : super(key: key);
+  final FirebaseRepository _firebaseRepository;
+  final Account _account;
+
+  SettingsPage({Key key, @required firebaseRepository, @required account,}) :
+      _firebaseRepository = firebaseRepository,
+  _account = account,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Settings'),),
-      bottomNavigationBar: MainNavBar(),
+      bottomNavigationBar: MainNavBar(account: _account, firebaseRepository: _firebaseRepository,),
       body: ListView(
         children: [
           ListTile(

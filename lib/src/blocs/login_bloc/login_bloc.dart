@@ -1,4 +1,3 @@
-
 import 'package:csc413termprojectfwhite/src/blocs/login_bloc/validators.dart';
 import 'package:csc413termprojectfwhite/src/resources/user_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,14 +52,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   Stream<LoginState> _mapEmailChangedToState(String email) async* {
-    //yield state.update(isEmailValid: true);
     yield state.update(
       isEmailValid: Validators.isValidEmail(email),
     );
   }
 
   Stream<LoginState> _mapPasswordChangedToState(String password) async* {
-    //yield state.update(isPasswordValid: true);
     yield state.update(
       isPasswordValid: Validators.isValidPassword(password),
     );

@@ -31,10 +31,6 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     }
   }
 
-  Stream<AccountState> _mapLoadAccountToState(LoadAccount event) async* {
-    //TODO: needs to load account from DB given userId
-    //yield AccountLoaded(event.userId);
-  }
 
   Stream<AccountState> _mapAccountUpdateToState(AccountUpdated event) async* {
     yield AccountLoaded(event.account);

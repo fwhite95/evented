@@ -3,19 +3,13 @@
 //Todo: displays events by data of occurrence
 
 import 'package:csc413termprojectfwhite/src/blocs/account_bloc/account_bloc.dart';
-import 'package:csc413termprojectfwhite/src/blocs/auth_bloc/authentication_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/navigation_bloc/navigation_state.dart';
 import 'package:csc413termprojectfwhite/src/blocs/navigation_bloc/navigation_bloc.dart';
-import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_bloc.dart';
-import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_events.dart';
-import 'package:csc413termprojectfwhite/src/blocs/venuesFollowed_bloc/venuesFollowed_bloc.dart';
-import 'package:csc413termprojectfwhite/src/blocs/venuesFollowed_bloc/venuesFollowed_events.dart';
 import 'package:csc413termprojectfwhite/src/pages/search/searchPage.dart';
 import 'package:csc413termprojectfwhite/src/pages/settingsPage.dart';
 import 'package:csc413termprojectfwhite/src/pages/venuePage.dart';
 import 'package:csc413termprojectfwhite/src/pages/venuesFollowedPage.dart';
 import 'package:csc413termprojectfwhite/src/resources/firebase_repository.dart';
-import 'package:csc413termprojectfwhite/src/ui/appBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,7 +54,7 @@ class HomePage extends StatelessWidget {
               return EventsFollowedPage(account: _account, firebaseRepository: _firebaseRepository,);
             }
             if (state is NavigationSettingsPageState) {
-              return SettingsPage();
+              return SettingsPage(account: _account, firebaseRepository: _firebaseRepository,);
             }
             if (state is NavigationVenuePageState) {
               return VenuePage(firebaseRepository: _firebaseRepository, account: _account,);

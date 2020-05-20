@@ -26,7 +26,7 @@ dependencies:
   cloud_firestore: any
   firebase_core: any
   google_sign_in: any
-  flutter_bloc: any
+  flutter_bloc: ^3.2.0
   firebase_auth: any
 
   equatable: any

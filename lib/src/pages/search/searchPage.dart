@@ -22,7 +22,7 @@ class SearchPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Search'),
       ),
-      bottomNavigationBar: MainNavBar(account: _account,),
+      bottomNavigationBar: MainNavBar(account: _account, firebaseRepository: _firebaseRepository,),
       body: BlocProvider<SearchBloc>(
         create: (context) =>
             SearchBloc(firebaseRepository: _firebaseRepository),

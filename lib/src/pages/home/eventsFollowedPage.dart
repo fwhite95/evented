@@ -1,9 +1,6 @@
-import 'package:csc413termprojectfwhite/src/blocs/auth_bloc/authentication_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/eventsFollowed_bloc/eventsFollowed_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/eventsFollowed_bloc/eventsFollowed_events.dart';
 import 'package:csc413termprojectfwhite/src/blocs/eventsFollowed_bloc/eventsFollowed_state.dart';
-import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_bloc.dart';
-import 'package:csc413termprojectfwhite/src/blocs/venue_bloc/venue_states.dart';
 import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
 import 'package:csc413termprojectfwhite/src/resources/firebase_repository.dart';
 import 'package:csc413termprojectfwhite/src/ui/appBar.dart';
@@ -32,7 +29,7 @@ class EventsFollowedPage extends StatelessWidget {
         builder: (context, state) {
           if (state is EventsFollowedLoading) {
             return Scaffold(
-              bottomNavigationBar: MainNavBar(),
+              bottomNavigationBar: MainNavBar(account: _account, firebaseRepository: _firebaseRepository,),
               body: Center(
                 child: Text(state.toString()),
               ),
@@ -40,7 +37,7 @@ class EventsFollowedPage extends StatelessWidget {
           }
           if (state is EventsFollowedLoadFailure) {
             return Scaffold(
-              bottomNavigationBar: MainNavBar(),
+              bottomNavigationBar: MainNavBar(account: _account, firebaseRepository: _firebaseRepository,),
               body: Center(
                 child: Text(state.toString()),
               ),
@@ -54,7 +51,7 @@ class EventsFollowedPage extends StatelessWidget {
                 appBar: AppBar(
                   title: Text('Events Followed'),
                 ),
-                bottomNavigationBar: MainNavBar(),
+                bottomNavigationBar: MainNavBar(account: _account, firebaseRepository: _firebaseRepository,),
                 body: Padding(
                   padding: EdgeInsets.all(16),
                   child: ListView.builder(

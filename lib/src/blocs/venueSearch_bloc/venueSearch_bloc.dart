@@ -1,10 +1,7 @@
 import 'dart:async';
 import 'package:csc413termprojectfwhite/src/blocs/venueSearch_bloc/venueSearch_event.dart';
 import 'package:csc413termprojectfwhite/src/blocs/venueSearch_bloc/venueSearch_state.dart';
-import 'package:csc413termprojectfwhite/src/models/accountModel.dart';
 import 'package:csc413termprojectfwhite/src/resources/firebase_repository.dart';
-import 'package:csc413termprojectfwhite/src/models/eventModel.dart';
-import 'package:csc413termprojectfwhite/src/models/venueModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';

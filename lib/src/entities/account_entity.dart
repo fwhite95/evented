@@ -1,6 +1,5 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:csc413termprojectfwhite/src/models/eventModel.dart';
 import 'package:equatable/equatable.dart';
 
 class AccountEntity extends Equatable {

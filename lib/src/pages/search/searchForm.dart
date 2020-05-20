@@ -29,9 +29,6 @@ class _SearchFormState extends State<SearchForm> {
 
   Account get _account => widget._account;
   FirebaseRepository get _firebaseRepository => widget._firebaseRepository;
-  //Maybe need this?
-  //bool get isPopulated => _searchController.text.isNotEmpty;
-
 
   @override
   void initState() {
