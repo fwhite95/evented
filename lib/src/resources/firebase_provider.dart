@@ -18,7 +18,6 @@ class FirebaseProvider {
   }
 
   //Add an account to firebase
-  //Return: ???? maybe return the same account again?
   Future<Account> addAccount(Account account) async{
     AccountEntity accountEntity = account.toEntity();
     await accountCollection.add(accountEntity.toDocument());
