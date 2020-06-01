@@ -1,6 +1,4 @@
 //Build a homepage
-//Todo: Displays events that are followed
-//Todo: displays events by data of occurrence
 
 import 'package:csc413termprojectfwhite/src/blocs/account_bloc/account_bloc.dart';
 import 'package:csc413termprojectfwhite/src/blocs/navigation_bloc/navigation_state.dart';

@@ -1,4 +1,4 @@
-//#Todo: Login page
+
 //stores user info in database
 
 import 'package:csc413termprojectfwhite/src/blocs/login_bloc/login_bloc.dart';

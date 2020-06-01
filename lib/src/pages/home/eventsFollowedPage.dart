@@ -8,6 +8,7 @@ import 'package:csc413termprojectfwhite/src/ui/eventDetailPage.dart';
 import 'package:csc413termprojectfwhite/src/ui/timeFormatText.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+//TODO: Add sort by date blocks
 
 class EventsFollowedPage extends StatelessWidget {
   final Account _account;

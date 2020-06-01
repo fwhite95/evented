@@ -6,6 +6,7 @@ import 'package:csc413termprojectfwhite/src/ui/appBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+//TODO: optimize
 class SearchPage extends StatelessWidget {
   final FirebaseRepository _firebaseRepository;
   final Account _account;

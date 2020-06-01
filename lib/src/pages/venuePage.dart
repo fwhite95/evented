@@ -9,6 +9,8 @@ import 'package:csc413termprojectfwhite/src/ui/timeFormatText.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+//TODO: Optimize this page
+
 class VenuePage extends StatelessWidget {
   final Account _account;
   final FirebaseRepository _firebaseRepository;
